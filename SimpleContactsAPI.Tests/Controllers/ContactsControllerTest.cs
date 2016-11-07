@@ -15,7 +15,7 @@ namespace SimpleContactsAPI.Tests.Controllers
         public void GetContacts_ShouldReturnAllContacts()
         {
             // Arrange
-            var context = new TestMyContactsContext();
+            var context = new TestSimpleContactsAPIContext();
             context.Contacts.Add(new Contact { ID = 1, FirstName = "Blake", LastName = "Smith", Memo = "Self" });
             context.Contacts.Add(new Contact { ID = 2, FirstName = "Danielle", LastName = "Hildebrande", Memo = "Girlfriend" });
             context.Contacts.Add(new Contact { ID = 3, FirstName = "Kalon", LastName = "Hinds", Memo = "Friend" });
@@ -36,7 +36,7 @@ namespace SimpleContactsAPI.Tests.Controllers
         public void GetContact_ShouldReturnContactById()
         {
             // Arrange
-            var context = new TestMyContactsContext();
+            var context = new TestSimpleContactsAPIContext();
             context.Contacts.Add(new Contact { ID = 1, FirstName = "Blake", LastName = "Smith", Memo = "Self" });
             context.Contacts.Add(new Contact { ID = 2, FirstName = "Danielle", LastName = "Hildebrande", Memo = "Girlfriend" });
             context.Contacts.Add(new Contact { ID = 3, FirstName = "Kalon", LastName = "Hinds", Memo = "Friend" });
@@ -57,7 +57,7 @@ namespace SimpleContactsAPI.Tests.Controllers
         public void PostContact_ShouldReturnSameContact()
         {
             // Arrange
-            var controller = new ContactsController(new TestMyContactsContext());
+            var controller = new ContactsController(new TestSimpleContactsAPIContext());
             Contact test = new Contact() { ID = 4, FirstName = "TestFirst", LastName = "TestLast", Memo = "TestMemo" };
 
             // Act
@@ -76,7 +76,7 @@ namespace SimpleContactsAPI.Tests.Controllers
         public void PutContact_ShouldReturnStatusCode()
         {
             // Arrange
-            var context = new TestMyContactsContext();
+            var context = new TestSimpleContactsAPIContext();
             context.Contacts.Add(new Contact { ID = 1, FirstName = "Blake", LastName = "Smith", Memo = "Self" });
             context.Contacts.Add(new Contact { ID = 2, FirstName = "Danielle", LastName = "Hildebrande", Memo = "Girlfriend" });
             context.Contacts.Add(new Contact { ID = 3, FirstName = "Kalon", LastName = "Hinds", Memo = "Friend" });
@@ -97,7 +97,7 @@ namespace SimpleContactsAPI.Tests.Controllers
         public void PutContact_ShouldFail_WhenDifferentID()
         {
             // Arrange
-            var controller = new ContactsController(new TestMyContactsContext());
+            var controller = new ContactsController(new TestSimpleContactsAPIContext());
 
             // Act
             var badresult = controller.PutContact(4, new Contact { ID = 1, FirstName = "Blake", LastName = "Smith", Memo = "Self" });
@@ -111,7 +111,7 @@ namespace SimpleContactsAPI.Tests.Controllers
         public void DeleteContact_ShouldDeleteContactById()
         {
             // Arrange
-            var context = new TestMyContactsContext();
+            var context = new TestSimpleContactsAPIContext();
             var contact = new Contact { ID = 1, FirstName = "Blake", LastName = "Smith", Memo = "Self" };
             context.Contacts.Add(contact);
             var controller = new ContactsController(context);
